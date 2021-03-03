@@ -14,7 +14,7 @@ def main():
     
     while 1: 
 
-        x = input(f" Grab world (of base {xBase})").upper()
+        x = input(f" Grab world (of base {xBase}): ").upper()
         # Dell space
         x = "".join( x.split(" ") )
 
