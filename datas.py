@@ -5,16 +5,16 @@ from string import ascii_uppercase as as_up
 
 charListe = list("0123456789" + as_up)  # ["1", "2",....., "A", ...... "Z"]
 
-# under : characterCorresp  {"0": 0 , 1":  1, .... "A":  10,  : B":  11, ...., "Z":  35} end him reverse
-characterCorresp = dict()
+# under : charCorresp  {"0": 0 , 1":  1, .... "A":  10,  : B":  11, ...., "Z":  35} end him reverse
+charCorresp = dict()
 
 for index, el in enumerate(charListe):
-  characterCorresp[el] = index
+  charCorresp[el] = index
 
-characterCorrespReverse = dict()
+charCorrespReverse = dict()
 
-for el, index in characterCorresp.items():
-  characterCorrespReverse[index] = el
+for el, index in charCorresp.items():
+  charCorrespReverse[index] = el
 
 
 #   CONSTANTS (End)         #
@@ -30,9 +30,9 @@ def itemCorrect(mots, base):
 
     correct = True
 
-    global characterCorrespListe
+    global charListe
 
-    valableElement = [ i for i, n in characterCorrespListe[:base] ]
+    valableElement = charListe[:base]
 
     # correct is False if one of "mot" characters not in "valableElement"
     for el in mots:
@@ -41,11 +41,21 @@ def itemCorrect(mots, base):
     
     return correct
 
+def baseInput():
+
+    xBase,  yBase = int(input(">> base x: ")) , int( input(">> base y: "))
+    
+    if (0 < xBase < 36 and 0 < yBase < 36) == False:
+        print("base x or y not in range (1-35)\n") 
+        return baseInput()
+    
+    return xBase,  yBase
+
 
 def xToDec(x, xBase):
     """ return _x ( in base "xBase") to base 10_ """
 
-    global characterCorresp
+    global charCorresp
       
     x = list(x)  #list of all characters of x
 
@@ -55,7 +65,7 @@ def xToDec(x, xBase):
 
     for i, el in enumerate(x):
 
-      dec += characterCorresp[el]* (xBase**i)
+      dec += charCorresp[el]* (xBase**i)
 
     return dec
  
@@ -63,11 +73,11 @@ def xToDec(x, xBase):
 def decToY(dec, yBase):
     """ return _dec ( in base10) to base "yBase"_ """
 
-    global characterCorrespReverse
+    global charCorrespReverse
   
     y = ""
     while dec != 0:
-        y = characterCorrespReverse[dec % yBase] + y
+        y = charCorrespReverse[dec % yBase] + y
         dec //= yBase
        
     return y
