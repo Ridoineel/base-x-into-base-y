@@ -6,11 +6,15 @@ This program contains two file ( datas.py and index.py )
     index.py : the principal execution file
     
 ex: 
+
     Base Converter ( x into y) (1-35)
-    Enter:
-    >> base x: 2
-    >> base y: 16
+    
+    Entry
+    base x: 2
+    base y: 16
+    
+    Grab world (of base 2): 111111000101
 
-     Grab world (of base 2): 111111000101
+    111111000101 (2) = FC5 (16)  
 
-     111111000101 (2) = FC5 (16)    
+      
