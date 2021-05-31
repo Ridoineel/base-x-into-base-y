@@ -4,7 +4,7 @@ import datas
 
 def main():
 
-    print("Base Converter ( x into y) (1-35)")
+    print("Base Converter ( x into y) (1-36)")
 
     print("Enter: ") 
 
@@ -15,8 +15,8 @@ def main():
     while 1: 
 
         x = input(f" Grab world (of base {xBase}): ").upper()
-        # Dell space
-        x = "".join( x.split(" ") )
+        # Delete space(s)
+        x = "".join( x.split() )
 
         if datas.itemCorrect(x, xBase):
             break

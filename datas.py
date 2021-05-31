@@ -36,7 +36,7 @@ def itemCorrect(mots, base):
 
     # correct is False if one of "mot" characters not in "valableElement"
     for el in mots:
-        if el not in valableElement: 
+        if el  not in valableElement: 
           correct = False
     
     return correct
@@ -45,8 +45,8 @@ def baseInput():
 
     xBase,  yBase = int(input(">> base x: ")) , int( input(">> base y: "))
     
-    if (0 < xBase < 36 and 0 < yBase < 36) == False:
-        print("base x or y not in range (1-35)\n") 
+    if (0 < xBase <= 36 and 0 < yBase <= 36) == False:
+        print("base x or y not in range (1-36)\n") 
         return baseInput()
     
     return xBase,  yBase
@@ -57,7 +57,7 @@ def xToDec(x, xBase):
 
     global charCorresp
       
-    x = list(x)  #list of all characters of x
+    x = list(x.upper())  #list of all characters of x
 
     x.reverse() # ex: [1, 2] into [2, 1]
 
@@ -65,7 +65,7 @@ def xToDec(x, xBase):
 
     for i, el in enumerate(x):
 
-      dec += charCorresp[el]* (xBase**i)
+      	dec += charCorresp[el]* (xBase**i)
 
     return dec
  
