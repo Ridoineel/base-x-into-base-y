@@ -1,25 +1,17 @@
-from string import ascii_uppercase as as_up  
-# ascii_uppercase is all upper letters "ABCD......Z"
 
-#   CONSTANTS (Start)       #
+from string import ascii_uppercase, digits
 
-charListe = list("0123456789" + as_up)  # ["1", "2",....., "A", ...... "Z"]
+# ["1", "2",....., "A", ...... "Z"]
+charListe = list(digits + ascii_uppercase)  
 
-# under : charCorresp  {"0": 0 , 1":  1, .... "A":  10,  : B":  11, ...., "Z":  35} end him reverse
+# charCorresp  {"0": 0 , 1":  1, .... "A":  10,  : B":  11, ...., "Z":  35} end him reverse
+
 charCorresp = dict()
-
-for index, el in enumerate(charListe):
-  charCorresp[el] = index
-
 charCorrespReverse = dict()
 
-for el, index in charCorresp.items():
-  charCorrespReverse[index] = el
-
-
-#   CONSTANTS (End)         #
-
-#    FUNCTIONS DECLARATION  #
+for index, el in enumerate(charListe):
+    charCorresp[el] = index
+    charCorrespReverse[index] = el
 
 def itemCorrect(mots, base):
     """ Return 
@@ -32,12 +24,13 @@ def itemCorrect(mots, base):
 
     global charListe
 
-    valableElement = charListe[:base]
+    valable_elements = charListe[:base]
 
     # correct is False if one of "mot" characters not in "valableElement"
     for el in mots:
-        if el  not in valableElement: 
-          correct = False
+        if el  not in valable_elements:
+            correct = False
+            break
     
     return correct
 
@@ -45,33 +38,27 @@ def baseInput():
 
     xBase,  yBase = int(input(">> base x: ")) , int( input(">> base y: "))
     
-    if (0 < xBase <= 36 and 0 < yBase <= 36) == False:
+    if not (0 < xBase <= 36 and 0 < yBase <= 36):
         print("base x or y not in range (1-36)\n") 
         return baseInput()
     
     return xBase,  yBase
 
 
-def xToDec(x, xBase):
+def xToDec(x: str, xBase: int) -> int:
     """ return _x ( in base "xBase") to base 10_ """
 
     global charCorresp
       
-    x = list(x.upper())  #list of all characters of x
+    x_rev = reversed(x.upper())  #list of all characters of x in reverse form
 
-    x.reverse() # ex: [1, 2] into [2, 1]
-
-    dec =0 
-
-    for i, el in enumerate(x):
-
-      	dec += charCorresp[el]* (xBase**i)
+    dec = sum(charCorresp[el] * (xBase**i) for i, el in enumerate(x_rev))
 
     return dec
  
 
-def decToY(dec, yBase):
-    """ return _dec ( in base10) to base "yBase"_ """
+def decToY(dec: int, yBase: int) -> str:
+    """ return _dec ( in base10) to base {yBase}_ """
 
     global charCorrespReverse
   
@@ -83,13 +70,13 @@ def decToY(dec, yBase):
     return y
 
 
-def xToY(x, xBase, yBase):
+def xToY(x: str, xBase: int, yBase: int) -> str:
     """ return y of x (in base "xBase") into base "yBase """
     
     # x into base 10
-    decimale = xToDec(x, xBase) 
+    decimale = xToDec(x, xBase) if xBase != 10 else int(x)
 
     # Finish: "decimale" into base "yBase"
-    y = decToY(decimale, yBase )
+    y = decToY(decimale, yBase ) if yBase != 10 else str(decimale)
   
     return y

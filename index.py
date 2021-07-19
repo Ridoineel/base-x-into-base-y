@@ -4,7 +4,7 @@ import datas
 
 def main():
 
-    print("Base Converter ( x into y) (1-36)")
+    print("Base Converter (x into y) (1-36)")
 
     print("Enter: ") 
 
@@ -16,7 +16,7 @@ def main():
 
         x = input(f" Grab world (of base {xBase}): ").upper()
         # Delete space(s)
-        x = "".join( x.split() )
+        x = "".join(x.split())
 
         if datas.itemCorrect(x, xBase):
             break
@@ -31,4 +31,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    import os; os.system('pause')
