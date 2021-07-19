@@ -1,5 +1,5 @@
 # base-x-into-base-y...
-Base Converter ( 1-35 ) 
+Base Converter ( 1-36 ) 
 This program contains two file ( datas.py and index.py )
     datas.py contains all necessary Functions and Constants
     index.py : the principal execution file
